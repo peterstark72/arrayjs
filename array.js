@@ -23,8 +23,8 @@ exports.groupby = function (array, key) {
 
 exports.extent = function (array) {
     // Returns the first and last item in the array
-    
-    if (array === undefined) {throw new Error("Expected array, got undefined"); };
+
+    if (array === undefined) {throw new Error("Expected array, got undefined"); }
 
     if (array.length === 1) {
         return [array[0], array[0]];
@@ -155,35 +155,3 @@ exports.sort = function (array, accessor, reverse) {
 
     return array.sort(compare);
 };
-
-exports.aggregate = function (array, key, index, aggFunc, cols) {
-        /*
-        Aggregates, by summarizing, objects in an array accoring to a given period (day, week, month):    
-
-        */
-        var grouped,
-            group,
-            result = [],
-            i,
-            max,
-            c,
-            v;
-
-        // Group array with key
-        grouped = exports.groupby(array, key);
-
-        //
-        var numberOfColumns = cols.length;
-
-        for (group in grouped) {
-            if (grouped.hasOwnProperty(group)) {
-                v = {}
-                v[index] = group;
-                for (c = 0; c < numberOfColumns; c++) {
-                    v[cols[c]] = aggFunc(grouped[group], function (d) {return d[cols[c]]; });
-                }
-                result.push(v);
-            }
-        }
-        return result;
-    };
