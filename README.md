@@ -10,7 +10,7 @@ var array = require('./array');
 
 var a = [{name: "Peter"}, {name: "Edvin"}, {name: "Peter"}];
 
-var grouped = array(a, function (d) {return d.a; });
+var grouped = array(a, function (d) {return d.name; });
 ```
 
 Now ```grouped``` is:

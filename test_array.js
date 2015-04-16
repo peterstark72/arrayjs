@@ -10,10 +10,13 @@ var array = require('./array');
 */ 
 
 
-describe("extent", function () {
-    it("[1,2,4,5] should return [1,5]", function (done) {
-        assert.equal(array.extent([1,2,4,5])[0], 1);
-        assert.equal(array.extent([1,2,4,5])[1], 5);
+describe("groupby", function () {
+    
+    var a = [{name: "Peter"}, {name: "Edvin"}, {name: "Peter"}];
+
+    it(" should return [1,5]", function (done) {
+        var grouped = array.groupby(a, function (d) {return d.name; });
+        assert.equal(Object.keys(grouped).length, 2);
         done();
     });
     it("Empty array throws error", function (done) {
