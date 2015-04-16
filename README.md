@@ -26,13 +26,13 @@ Now ```grouped``` is:
 
 ### Filter
 
-´´´javascript
+```javascript
 var a = [{name: "Peter"}, {name: "Edvin"}, {name: "Peter"}];
 
 var filtered = array.filter(a, function (d) {return d.name === "Edvin"; });
-´´´
+```
 
-Now ´´´filtered´´´ is ´´´[ { name: 'Edvin' } ]´´´.
+Now ```filtered``` is ```[ { name: 'Edvin' } ]```.
 
 
 
