@@ -46,7 +46,7 @@ var sorted = array.sort(a, function (d) {return d.name; });
 Now ```sorted``` is:
 ```
 [ { name: 'Calle' }, { name: 'Boo' }, { name: 'Adam' } ]
-``
+```
 
 ### Aggregate
 
