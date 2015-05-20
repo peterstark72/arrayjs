@@ -149,3 +149,43 @@ exports.sort = function (array, accessor, reverse) {
 
     return array.sort(compare);
 };
+
+exports.aggregate = function (array, index, func) {
+    /*
+    
+        Aggregates objects in an array based on a given index.
+
+        - array, an array of objects
+        - index, name of index
+        - func, the function used to aggregate the values. It shuould take an array of values and return a result, eg sum([1,2,3]) -> 6
+
+    */
+
+    var i,
+        itm,
+        group,
+        result = [];
+
+    var grouped = exports.groupby(array, function (d) {return d[index]; });
+
+    var attribs = exports.filter(Object.keys(array[0]), function (d) {return d !== index; }),
+        numberOfAttribs = attribs.length;
+
+    var getAttrib = function (d) {
+        return d[this.attrib];
+    };
+
+    for (group in grouped) {
+        if (grouped.hasOwnProperty(group)) {
+
+            itm = {};
+            itm[index] = group;
+            for (i = 0; i < numberOfAttribs; i++) {
+                itm[attribs[i]] = func(grouped[group].map(getAttrib.bind({attrib: attribs[i]})));
+            }
+            result.push(itm);
+        }
+    }
+
+    return result;
+};

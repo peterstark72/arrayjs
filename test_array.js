@@ -128,3 +128,14 @@ describe("sort", function () {
         done();
     });        
 });
+
+describe("aggregate", function () {
+    it("Should aggregate", function (done) {
+        var a = [{name: "Adam", value: 5}, {name: "Calle", value: 5}, {name: "Boo", value: 5}, {name: "Boo", value: 5}, {name: "Calle", value: 7}];
+        var aggregated = array.aggregate(a, 'name', array.sum);
+        assert.equal(aggregated.length, 3);
+        done();
+    });
+});
+
+
